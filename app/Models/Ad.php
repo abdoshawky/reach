@@ -20,6 +20,9 @@ class Ad extends Model
         'start_date'
     ];
 
+    const TYPE_FREE = 'free';
+    const TYPE_PAID = 'paid';
+
     protected $dates = ['start_date'];
 
     public function advertiser(): BelongsTo
