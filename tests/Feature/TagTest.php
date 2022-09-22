@@ -3,13 +3,10 @@
 namespace Tests\Feature;
 
 use App\Models\Tag;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class TagTest extends TestCase
 {
-    use RefreshDatabase;
-
     private $tag;
 
     protected function setUp(): void
