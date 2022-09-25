@@ -21,7 +21,7 @@ class AdTest extends TestCase
     /**
      * @test
      */
-    public function it_can_list_all_tags()
+    public function it_can_list_all_ads()
     {
         $response = $this->get('/api/ads');
 
@@ -57,7 +57,7 @@ class AdTest extends TestCase
      */
     public function it_can_filter_ads_by_tags()
     {
-        $response = $this->get('/');
+        $response = $this->get('/api/ads');
 
         $response->assertStatus(200);
     }
@@ -67,7 +67,7 @@ class AdTest extends TestCase
      */
     public function it_can_filter_ads_by_category_and_tags()
     {
-        $response = $this->get('/');
+        $response = $this->get('/api/ads');
 
         $response->assertStatus(200);
     }
