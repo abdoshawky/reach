@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Ad;
 use App\Models\Category;
+use App\Models\Tag;
 use Tests\TestCase;
 
 class AdTest extends TestCase
@@ -57,18 +58,14 @@ class AdTest extends TestCase
      */
     public function it_can_filter_ads_by_tags()
     {
-        $response = $this->get('/api/ads');
+        $tag = Tag::factory()->create();
+        $ad = Ad::factory()->create();
+        $ad->tags()->sync([$tag->id]);
 
-        $response->assertStatus(200);
-    }
+        $response = $this->get('/api/ads?tags[]=' . $tag->id);
 
-    /**
-     * @test
-     */
-    public function it_can_filter_ads_by_category_and_tags()
-    {
-        $response = $this->get('/api/ads');
-
-        $response->assertStatus(200);
+        $response
+            ->assertStatus(200)
+            ->assertJsonPath('ads.*.tags.*.id', [$tag->id]);
     }
 }
